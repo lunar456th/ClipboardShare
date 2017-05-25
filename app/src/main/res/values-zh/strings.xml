@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="app_name">剪贴板分享</string>
+    <string name="twitter_consumer_key">7wrxkCDqlXDR0KKxRlClvi6i1</string>
+    <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
+    <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="menu_account_manage">账户管理</string>
+    <string name="menu_delete_all">全部清除</string>
+    <string name="menu_about">关于</string>
+    <string name="main_copied">这两个文本复制。</string>
+    <string name="main_start">开始分享吧！</string>
+    <string name="no_copied">没有副本的消息。</string>
+    <string name="not_logged_in">您还没有登录。</string>
+    <string name="question_before_share">你想分享你的消息？</string>
+    <string name="yes">四</string>
+    <string name="no">没有</string>
+    <string name="copied">复制。</string>
+    <string name="activated">它已被激活。</string>
+    <string name="inactivated">它已被禁用。</string>
+    <string name="twitter_logout">Twitter的注销</string>
+    <string name="twitter_login">Twitter的登录</string>
+    <string name="google_logout">谷歌注销</string>
+    <string name="google_login">谷歌登录</string>
+    <string name="question_before_logout">你确定要注销？</string>
+    <string name="logged_out">您已经登出。</string>
+    <string name="question_before_remove_all">你确定要删除所有？</string>
+    <string name="removed_all">两人都被删除。</string>
+    <string name="twitter_logged_in">我已经登录到Twitter上。</string>
+    <string name="google_logged_in">我已经登录到谷歌加。</string>
+    <string name="shared_all">我分享所有信息。</string>
+    <string name="shortcut_app">应用程序快捷方式</string>
+    <string name="question_before_remove">你确定要删除？</string>
+    <string name="removed">它已被删除。</string>
+    <string name="shared_twitter">而在Twitter上分享。</string>
+    <string name="network_login_check">请连接到网络并检查您的登录状态。</string>
+
+    <string name="help">
+        请先通过按压右上角的开关激活。\n
+        当您复制要启动的应用程序被添加到屏幕底部的文字。\n
+        按下启动按钮共享，然后复制所有短信将通过复制登录帐户共享。\n
+        登录到您的帐户可以从右上角的菜单键进行管理。\n
+        在共享之前，设备必须连接到网络。\n
+        复制的文本短按删除，您可以查看全部内容，请按住。\n
+        使用完毕后，按下开关，请停用该应用。
+    </string>
+
+    <string name="none"> </string>
+    <string name="app_info">Application Information</string>
+    <string name="rate_me_title">Rate me</string>
+    <string name="email_me_title">Email me</string>
+    <string name="open_source_title">Open Source</string>
+    <string name="rate_me_summary">play.google.com</string>
+    <string name="email_me_summary">naver.com</string>
+    <string name="open_source_summary">github.com</string>
+    <string name="email_address">lunar456th@naver.com</string>
+
+</resources>

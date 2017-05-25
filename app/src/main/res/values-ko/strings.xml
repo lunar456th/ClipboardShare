@@ -1,0 +1,54 @@
+<resources>
+
+    <string name="app_name">클립보드 쉐어</string>
+    <string name="twitter_consumer_key">7wrxkCDqlXDR0KKxRlClvi6i1</string>
+    <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
+    <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="menu_account_manage">계정 관리</string>
+    <string name="menu_delete_all">모두 지우기</string>
+    <string name="menu_about">About</string>
+    <string name="main_copied">개의 텍스트가 복사되었습니다.</string>
+    <string name="main_start">공유시작!</string>
+    <string name="no_copied">복사된 메시지가 없습니다.</string>
+    <string name="not_logged_in">로그인되어 있지 않습니다.</string>
+    <string name="question_before_share">개의 메시지를 공유하시겠습니까?</string>
+    <string name="yes">네</string>
+    <string name="no">아니오</string>
+    <string name="copied">복사됨.</string>
+    <string name="activated">활성화되었습니다.</string>
+    <string name="inactivated">비활성화되었습니다.</string>
+    <string name="twitter_logout">트위터 로그아웃</string>
+    <string name="twitter_login">트위터 로그인</string>
+    <string name="google_logout">구글 로그아웃</string>
+    <string name="google_login">구글 로그인</string>
+    <string name="question_before_logout">로그아웃하시겠습니까?</string>
+    <string name="logged_out">로그아웃되었습니다.</string>
+    <string name="question_before_remove_all">모두 삭제하시겠습니까?</string>
+    <string name="removed_all">모두 삭제되었습니다.</string>
+    <string name="twitter_logged_in">트위터에 로그인하였습니다.</string>
+    <string name="google_logged_in">구글 플러스에 로그인하였습니다.</string>
+    <string name="shared_all">모든 메시지를 공유하였습니다.</string>
+    <string name="shortcut_app">어플리케이션 바로가기</string>
+    <string name="question_before_remove">삭제하시겠습니까?</string>
+    <string name="removed">삭제되었습니다.</string>
+    <string name="shared_twitter">트위터에 공유하였습니다.</string>
+    <string name="network_login_check">네트워크에 연결한 후 로그인 상태를 확인해주세요.</string>
+
+    <string name="help">
+        먼저 오른쪽 상단의 스위치를 눌러 활성화 해주세요.\n
+        앱 활성화 후 원하는 텍스트를 복사하면 아래의 화면에 추가됩니다.\n
+        모든 텍스트를 복사한 후에 공유시작 버튼을 누르면 복사된 메시지가 로그인된 계정을 통해 공유됩니다.\n
+        로그인은 오른쪽 상단의 메뉴 버튼의 계정 관리에서 할 수 있습니다.\n
+        공유하기 전에 네트워크에 연결되어 있는지 확인해주세요.\n
+        복사된 텍스트는 짧게 눌러 전체 내용을 볼 수 있으며, 길게 눌러 삭제할 수 있습니다.\n
+        사용 후에는 스위치를 눌러서 앱을 비활성화 해주세요.
+    </string>
+
+    <string name="none"> </string>
+    <string name="app_info">어플리케이션 정보</string>
+    <string name="rate_me_title">평가하기</string>
+    <string name="email_me_title">개발자에게 메일 보내기</string>
+    <string name="open_source_title">오픈소스</string>
+
+</resources>

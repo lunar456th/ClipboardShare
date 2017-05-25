@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/menu_activate"
+        android:actionLayout="@layout/actionbar_switch"
+        android:title=""
+        app:showAsAction="always"
+        android:actionViewClass="android.widget.Switch"
+        android:visible="true"
+        android:theme="@style/MySwitch"/>
+
+    <group
+        android:id="@+id/menu_group">
+
+        <item
+            android:id="@+id/menu_login_twitter_google"
+            android:title="@string/menu_account_manage"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/menu_delete_all"
+            android:title="@string/menu_delete_all"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/menu_about"
+            android:title="@string/menu_about"
+            app:showAsAction="never" />
+
+    </group>
+
+</menu>
+    <!--android:orderInCategory="100"-->

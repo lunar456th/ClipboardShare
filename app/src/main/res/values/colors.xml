@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="background">#DDDDDD</color>
+    <color name="object_background">#FFFFFF</color>
+    <!--<color name="color_background_icon">#AAAAAA</color>-->
+
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <!--<color name="background">#EEEEEE</color>-->
+
+
+    <color name="colorCardBackground">#FFFFFF</color>
+
+
+
+
+
+    <color name="list_item_background">#AACCCCCC</color>
+    <color name="app_color">#8EAE3C</color>
+</resources>

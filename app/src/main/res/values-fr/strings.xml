@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="app_name">presse-papier</string>
+    <string name="twitter_consumer_key">7wrxkCDqlXDR0KKxRlClvi6i1</string>
+    <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
+    <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="menu_account_manage">Gestion des comptes</string>
+    <string name="menu_delete_all">Tout supprimer</string>
+    <string name="menu_about">au sujet de</string>
+    <string name="main_copied">Les deux textes copiés.</string>
+    <string name="main_start">Share it!</string>
+    <string name="no_copied">"Il n'y a pas de message de copie."</string>
+    <string name="not_logged_in">"Vous n'êtes pas connecté."</string>
+    <string name="question_before_share">Voulez-vous partager vos messages?</string>
+    <string name="yes">quatre</string>
+    <string name="no">aucun</string>
+    <string name="copied">Copié.</string>
+    <string name="activated">Il a été activé.</string>
+    <string name="inactivated">Il a été désactivé.</string>
+    <string name="twitter_logout">Twitter Déconnexion</string>
+    <string name="twitter_login">Twitter Connexion</string>
+    <string name="google_logout">Google déconnecte</string>
+    <string name="google_login">Google Connexion</string>
+    <string name="question_before_logout">Êtes-vous sûr de vouloir vous déconnecter?</string>
+    <string name="logged_out">Vous avez été déconnecté.</string>
+    <string name="question_before_remove_all">Etes-vous sûr de vouloir supprimer tous?</string>
+    <string name="removed_all">Les deux ont été supprimés.</string>
+    <string name="twitter_logged_in">Je suis connecté à Twitter.</string>
+    <string name="google_logged_in">Je suis connecté à Google Plus.</string>
+    <string name="shared_all">Je partage tous les messages.</string>
+    <string name="shortcut_app">"raccourcis d'application"</string>
+    <string name="question_before_remove">Êtes-vous sûr de vouloir supprimer?</string>
+    <string name="removed">Il a été supprimé.</string>
+    <string name="shared_twitter">Et partagé sur Twitter.</string>
+    <string name="network_login_check">Connectez-vous au réseau et vérifiez votre état de connexion.</string>
+
+    <string name="help">
+        "S'il vous plaît d'abord activé en appuyant sur le bouton en haut à droite.\n
+        Lorsque vous copiez du texte que vous voulez activer l'application est ajoutée au bas de l'écran.\n
+        Appuyez sur le bouton Démarrer le partage, puis copiez tous les messages texte seront partagés par le biais du compte de connexion de la copie.\n
+        Connectez-vous à votre compte peut être géré à partir du bouton de menu dans le coin supérieur droit.\n
+        Avant de partager, l'appareil doit être connecté au réseau.\n
+        Le texte copié Appuyez brièvement pour supprimer, vous pouvez afficher le contenu, appuyez et maintenez.\n
+        Après utilisation, appuyez sur le bouton, s'il vous plaît désactiver l'application."
+    </string>
+
+    <string name="none"> </string>
+    <string name="app_info">Application Information</string>
+    <string name="rate_me_title">Rate me</string>
+    <string name="email_me_title">Email me</string>
+    <string name="open_source_title">Open Source</string>
+    <string name="rate_me_summary">play.google.com</string>
+    <string name="email_me_summary">naver.com</string>
+    <string name="open_source_summary">github.com</string>
+    <string name="email_address">lunar456th@naver.com</string>
+
+</resources>

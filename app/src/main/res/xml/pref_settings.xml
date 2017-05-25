@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/app_info" >
+
+    <Preference
+        android:title="@string/open_source_title"
+        android:summary="@string/open_source_summary"
+        android:key="github">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/lunar456th/ClipboardShare" />
+    </Preference>
+
+    <Preference
+        android:title="@string/rate_me_title"
+        android:summary="@string/rate_me_summary"
+        android:key="playstore">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://play.google.com/store/apps/details?id=ClipboardShare" />
+    </Preference>
+
+    <Preference
+        android:title="@string/email_me_title"
+        android:summary="@string/email_me_summary"
+        android:key="naver">
+        <intent
+            android:action="android.intent.action.SENDTO"
+            android:data="mailto:lunar456th@naver.com" />
+    </Preference>
+
+</PreferenceScreen>

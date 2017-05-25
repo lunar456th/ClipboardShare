@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="app_name">クリップボードシェア</string>
+    <string name="twitter_consumer_key">7wrxkCDqlXDR0KKxRlClvi6i1</string>
+    <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
+    <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="menu_account_manage">アカウント管理</string>
+    <string name="menu_delete_all">すべてクリア</string>
+    <string name="menu_about">About</string>
+    <string name="main_copied">つのテキストがコピーされました。</string>
+    <string name="main_start">共有を開始！</string>
+    <string name="no_copied">コピーされたメッセージがありません。</string>
+    <string name="not_logged_in">ログインしていません。</string>
+    <string name="question_before_share">のメッセージを共有しますか？</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="copied">コピーされる。</string>
+    <string name="activated">有効です。</string>
+    <string name="inactivated">無効です。</string>
+    <string name="twitter_logout">ツイッターログアウト</string>
+    <string name="twitter_login">ツイッターログイン</string>
+    <string name="google_logout">グーグルログアウト</string>
+    <string name="google_login">グーグルログイン</string>
+    <string name="question_before_logout">ログアウトしますか？</string>
+    <string name="logged_out">ログアウトしました。</string>
+    <string name="question_before_remove_all">すべて削除しますか？</string>
+    <string name="removed_all">すべて削除されました。</string>
+    <string name="twitter_logged_in">Twitterにログインしました。</string>
+    <string name="google_logged_in">グーグルプラスにログインしました。</string>
+    <string name="shared_all">すべてのメッセージを共有しました。</string>
+    <string name="shortcut_app">アプリケーションのショートカット</string>
+    <string name="question_before_remove">削除しますか？</string>
+    <string name="removed">削除された。</string>
+    <string name="shared_twitter">Twitterで共有しました。</string>
+    <string name="network_login_check">ネットワークに接続し、ログインステータスを確認してください。</string>
+
+    <string name="help">
+        まず、右上のスイッチを押して有効にしてください。\n
+        アプリを有効にした後、目的のテキストをコピーすると、下の画面に追加されます。\n
+        すべてのテキストをコピーした後共有開始ボタンを押すと、コピーされたメッセージがログインしているアカウントを介して共有されます。\n
+        ログインは右上のメニューボタンのアカウント管理で行うことができます。\n
+        共有する前に、デバイスをネットワークに接続する必要があります。\n
+        コピーされたテキストは、短く押して、全体の内容を見ることができ、長く押して削除することができます。\n
+        使用後はスイッチを押してアプリを無効にしてください。\n
+    </string>
+
+    <string name="none"> </string>
+    <string name="app_info">Application Information</string>
+    <string name="rate_me_title">Rate me</string>
+    <string name="email_me_title">Email me</string>
+    <string name="open_source_title">Open Source</string>
+    <string name="rate_me_summary">play.google.com</string>
+    <string name="email_me_summary">naver.com</string>
+    <string name="open_source_summary">github.com</string>
+    <string name="email_address">lunar456th@naver.com</string>
+
+</resources>

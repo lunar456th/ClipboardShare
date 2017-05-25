@@ -1,0 +1,59 @@
+<resources>
+
+    <string name="app_name">Clipboard Share</string>
+    <string name="twitter_consumer_key">7wrxkCDqlXDR0KKxRlClvi6i1</string>
+    <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
+    <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="menu_account_manage">Account Manager</string>
+    <string name="menu_delete_all">Remove All</string>
+    <string name="menu_about">About</string>
+    <string name="main_copied">\s messages are copied.</string>
+    <string name="main_start">Share it!</string>
+    <string name="no_copied">No messages copied.</string>
+    <string name="not_logged_in">You are not logged in.</string>
+    <string name="question_before_share">Do you want to share your messages?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="copied">Copied.</string>
+    <string name="activated">Activated.</string>
+    <string name="inactivated">Deactivated.</string>
+    <string name="twitter_logout">Twitter logout</string>
+    <string name="twitter_login">Twitter Login</string>
+    <string name="google_logout">Google Sign Out</string>
+    <string name="google_login">Google Login</string>
+    <string name="question_before_logout">Are you sure to sign out?</string>
+    <string name="logged_out">You have been signed out.</string>
+    <string name="question_before_remove_all">Are you sure to delete all?</string>
+    <string name="removed_all">All deleted.</string>
+    <string name="twitter_logged_in">You are logged in to Twitter.</string>
+    <string name="google_logged_in">You are logged in to Google Plus.</string>
+    <string name="shared_all">All messages have been shared.</string>
+    <string name="shortcut_app">Application shortcut</string>
+    <string name="question_before_remove">Are you sure to delete?</string>
+    <string name="removed">Removed.</string>
+    <string name="shared_twitter">Shared on Twitter.</string>
+    <string name="network_login_check">Please connect to the network and check your login status.</string>
+
+    <string name="help">
+        Please activate by pressing the switch at the top right.\n
+        After activating the app, copy the desired text and it will be added to the screen below.\n
+        After copying all the text, click the Start sharing button and the copied message will be shared through the logged in account.\n
+        Sign-in can be done from the Manage Accounts menu button in the top right.\n
+        The device must be connected to the network before sharing.\n
+        You can view the entire contents by pressing briefly on the copied text, or you can delete it by pressing and holding.\n
+        Please disable the app by pressing the switch after use.
+    </string>
+
+    <string name="none"> </string>
+    <string name="app_info">Application Information</string>
+    <string name="rate_me_title">Rate me</string>
+    <string name="email_me_title">Email me</string>
+    <string name="open_source_title">Open Source</string>
+    <string name="rate_me_summary">play.google.com</string>
+    <string name="email_me_summary">naver.com</string>
+    <string name="open_source_summary">github.com</string>
+    <string name="email_address">lunar456th@naver.com</string>
+
+
+</resources>

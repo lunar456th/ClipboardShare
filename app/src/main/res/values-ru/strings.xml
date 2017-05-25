@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="app_name">буфер обмена Share</string>
+    <string name="twitter_consumer_key">7wrxkCDqlXDR0KKxRlClvi6i1</string>
+    <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
+    <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="menu_account_manage">управление счетами</string>
+    <string name="menu_delete_all">Очистить все</string>
+    <string name="menu_about">о</string>
+    <string name="main_copied">Два текста копироваться.</string>
+    <string name="main_start">Share it!</string>
+    <string name="no_copied">Там нет копии сообщений.</string>
+    <string name="not_logged_in">Вы не вошли в систему.</string>
+    <string name="question_before_share">Вы хотите поделиться своими сообщениями?</string>
+    <string name="yes">четыре</string>
+    <string name="no">нет</string>
+    <string name="copied">Скопировано.</string>
+    <string name="activated">Он был активирован.</string>
+    <string name="inactivated">Она была отключена.</string>
+    <string name="twitter_logout">Twitter Выйти</string>
+    <string name="twitter_login">Twitter Войти</string>
+    <string name="google_logout">Google выходит из</string>
+    <string name="google_login">Google Войти</string>
+    <string name="question_before_logout">Вы уверены, что хотите выйти?</string>
+    <string name="logged_out">Вы вышли из системы.</string>
+    <string name="question_before_remove_all">Вы уверены, что хотите удалить все?</string>
+    <string name="removed_all">Оба были удалены.</string>
+    <string name="twitter_logged_in">Я вошел в Twitter.</string>
+    <string name="google_logged_in">Я вошел в Google Plus.</string>
+    <string name="shared_all">Я разделяю все сообщения.</string>
+    <string name="shortcut_app">ярлыки приложений</string>
+    <string name="question_before_remove">Вы уверены, что хотите удалить?</string>
+    <string name="removed">Он был удален.</string>
+    <string name="shared_twitter">И делились на Twitter.</string>
+    <string name="network_login_check">Подключитесь к сети и проверьте свой логин.</string>
+
+    <string name="help">
+        Пожалуйста, первым активируется нажатием переключателя в правом верхнем углу.\n
+        При копировании текста, который вы хотите, чтобы активировать приложение будет добавлено в нижней части экрана.\n
+        Нажмите кнопку Start Sharing, а затем скопировать все текстовые сообщения будут переданы через копирование регистрационной учетной записи.\n
+        Войдите в свою учетную запись можно управлять с помощью кнопки меню в верхнем правом углу.\n
+        Перед совместным использованием устройство должно быть подключено к сети.\n
+        Скопированный текст Нажмите на короткое время для удаления, вы можете просматривать все содержимое, нажмите и удерживайте.\n
+        После использования, нажмите переключатель, пожалуйста, отключите приложение.
+    </string>
+
+    <string name="none"> </string>
+    <string name="app_info">Application Information</string>
+    <string name="rate_me_title">Rate me</string>
+    <string name="email_me_title">Email me</string>
+    <string name="open_source_title">Open Source</string>
+    <string name="rate_me_summary">play.google.com</string>
+    <string name="email_me_summary">naver.com</string>
+    <string name="open_source_summary">github.com</string>
+    <string name="email_address">lunar456th@naver.com</string>
+
+</resources>
