@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare.ClipboardManager;
+package com.sj.sj.clipboardshare.ClipboardManager;
 
 import android.os.Parcel;
 import android.os.Parcelable;

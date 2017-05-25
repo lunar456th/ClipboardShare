@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare.SNSAccountManager;
+package com.sj.sj.clipboardshare.SNSAccountManager;
 
 import android.content.Context;
 import android.content.Intent;

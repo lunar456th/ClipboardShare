@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare.ClipboardManager;
+package com.sj.sj.clipboardshare.ClipboardManager;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,9 +13,9 @@ import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
 import android.widget.Toast;
 
-import com.example.sj.clipboardshare.MainActivity;
-import com.example.sj.clipboardshare.R;
-import com.example.sj.clipboardshare.SwitchManager;
+import com.sj.sj.clipboardshare.MainActivity;
+import com.sj.sj.clipboardshare.R;
+import com.sj.sj.clipboardshare.SwitchManager;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;

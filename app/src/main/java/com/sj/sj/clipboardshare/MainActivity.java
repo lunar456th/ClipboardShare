@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare;
+package com.sj.sj.clipboardshare;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -22,10 +22,10 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.sj.clipboardshare.ClipboardManager.ClipboardService;
-import com.example.sj.clipboardshare.SNSAccountManager.GoogleAccountManager;
-import com.example.sj.clipboardshare.SNSAccountManager.TwitterAccountManager;
-import com.example.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
+import com.sj.sj.clipboardshare.ClipboardManager.ClipboardService;
+import com.sj.sj.clipboardshare.SNSAccountManager.GoogleAccountManager;
+import com.sj.sj.clipboardshare.SNSAccountManager.TwitterAccountManager;
+import com.sj.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 

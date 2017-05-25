@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sj.clipboardshare.AboutActivity">
+    tools:context="com.android.sj.clipboardshare.com.sj.sj.clipboardshare.AboutActivity">
 
 </android.support.constraint.ConstraintLayout>

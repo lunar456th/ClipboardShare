@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare;
+package com.sj.sj.clipboardshare;
 
 import android.content.Intent;
 import android.net.Uri;

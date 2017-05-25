@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare.ClipboardManager;
+package com.sj.sj.clipboardshare.ClipboardManager;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sj.clipboardshare.R;
+import com.sj.sj.clipboardshare.R;
 
 import java.util.ArrayList;
 

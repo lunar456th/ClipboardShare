@@ -1,12 +1,12 @@
-package com.example.sj.clipboardshare;
+package com.sj.sj.clipboardshare;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
-import com.example.sj.clipboardshare.SNSAccountManager.GoogleAccountManager;
-import com.example.sj.clipboardshare.SNSAccountManager.TwitterAccountManager;
+import com.sj.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
+import com.sj.sj.clipboardshare.SNSAccountManager.GoogleAccountManager;
+import com.sj.sj.clipboardshare.SNSAccountManager.TwitterAccountManager;
 
 public class ShareActivity extends AppCompatActivity {
 
@@ -18,7 +18,6 @@ public class ShareActivity extends AppCompatActivity {
 
     private int count = 0;
     private int size;
-    private int per_one = 3;
 
 
     @Override
@@ -38,6 +37,7 @@ public class ShareActivity extends AppCompatActivity {
             twitterAccountManager.share(status);
         }
 
+        int per_one = 3;
         for(int i = 0; i < (size < per_one ? size : per_one); i++) {
             String status = clipboardAdapter.getItem(count++).getString();
             startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);

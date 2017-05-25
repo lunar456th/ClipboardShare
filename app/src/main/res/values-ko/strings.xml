@@ -50,5 +50,9 @@
     <string name="rate_me_title">평가하기</string>
     <string name="email_me_title">개발자에게 메일 보내기</string>
     <string name="open_source_title">오픈소스</string>
+    <string name="rate_me_summary">play.google.com</string>
+    <string name="email_me_summary">naver.com</string>
+    <string name="open_source_summary">github.com</string>
+    <string name="email_address">lunar456th@naver.com</string>
 
 </resources>

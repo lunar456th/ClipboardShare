@@ -1,4 +1,4 @@
-package com.example.sj.clipboardshare.SNSAccountManager;
+package com.sj.sj.clipboardshare.SNSAccountManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,8 @@ import android.util.Log;
 import android.webkit.CookieManager;
 import android.widget.Toast;
 
-import com.example.sj.clipboardshare.R;
-import com.example.sj.clipboardshare.WebViewActivity;
+import com.sj.sj.clipboardshare.R;
+import com.sj.sj.clipboardshare.WebViewActivity;
 
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
