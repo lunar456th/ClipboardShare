@@ -11,7 +11,7 @@ public class AboutActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_settings);
+        addPreferencesFromResource(R.xml.pref_about);
 
         Preference github = findPreference("github");
         Preference playstore = findPreference("playstore");
@@ -27,7 +27,7 @@ public class AboutActivity extends PreferenceActivity {
 
         playstore.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=ClipboardShare"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.sj.sj.ClipboardShare"));
                 startActivity(intent);
                 return true;
             }

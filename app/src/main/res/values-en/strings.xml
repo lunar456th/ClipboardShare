@@ -54,5 +54,7 @@
     <string name="email_me_summary">naver.com</string>
     <string name="open_source_summary">github.com</string>
     <string name="email_address">lunar456th@naver.com</string>
+    <string name="on_sharing_twitter">Sharing on Twitter… </string>
+    <string name="on_sharing_google_plus">Sharing on Google Plus… </string>
 
 </resources>
