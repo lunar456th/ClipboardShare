@@ -56,18 +56,22 @@ public class ShareActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case CODE_GOOGLE_SHARE_DIALOG:
-                if (count >= size) {
+                if (count == size) {
                     Intent intent = getIntent();
                     setResult(RESULT_OK, intent);
                     finish();
                 }
-                if (resultCode == RESULT_CANCELED) {
+                if (resultCode == RESULT_OK) {
+                    googlePlusProgress.setText(count + "/" + size);
+                    if(count < size) {
+                        String status = clipboardAdapter.getItem(count++).getString();
+                        startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);
+                    }
+                } else {
+                    Intent intent = getIntent();
+                    setResult(RESULT_CANCELED, intent);
                     finish();
                     break;
-                } else if (resultCode == RESULT_OK) {
-                    googlePlusProgress.setText(count + "/" + size);
-                    String status = clipboardAdapter.getItem(count++).getString();
-                    startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);
                 }
             default:
                 break;
