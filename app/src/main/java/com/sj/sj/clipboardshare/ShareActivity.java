@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sj.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
 import com.sj.sj.clipboardshare.SNSAccountManager.GoogleAccountManager;
@@ -20,12 +21,13 @@ public class ShareActivity extends AppCompatActivity {
     TextView twitterProgress;
     TextView googlePlusProgress;
 
-    private int count = 0;
+    private int count;
+    private int numOfShared = 0;
     private int size;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
 
@@ -44,11 +46,18 @@ public class ShareActivity extends AppCompatActivity {
             twitterAccountManager.share(status);
             twitterProgress.setText(i + 1 + "/" + size);
         }
+        Toast.makeText(this, getString(R.string.shared_twitter), Toast.LENGTH_SHORT).show();
 
         int per_one = 3;
-        for(int i = 0; i < (size < per_one ? size : per_one); i++) {
-            String status = clipboardAdapter.getItem(count++).getString();
-            startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);
+        if(googleAccountManager.isLoggedIn()) {
+            for (int i = 0; i < (size < per_one ? size : per_one); i++) {
+                String status = clipboardAdapter.getItem(count++).getString();
+                startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);
+            }
+        } else {
+            Intent intent = getIntent();
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 
@@ -62,7 +71,7 @@ public class ShareActivity extends AppCompatActivity {
                     finish();
                 }
                 if (resultCode == RESULT_OK) {
-                    googlePlusProgress.setText(count + "/" + size);
+                    googlePlusProgress.setText(++numOfShared + "/" + size);
                     if(count < size) {
                         String status = clipboardAdapter.getItem(count++).getString();
                         startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);

@@ -56,5 +56,8 @@
     <string name="email_address">lunar456th@naver.com</string>
     <string name="on_sharing_twitter">트위터에 공유 중입니다… </string>
     <string name="on_sharing_google_plus">구글플러스에 공유 중입니다… </string>
+    <string name="package_name_twitter">com.twitter.android</string>
+    <string name="package_name_google_plus">com.google.android.apps.plus</string>
+    <string name="app_not_installed_google_plus">구글 플러스 앱이 필요합니다. 구글 플레이 스토어에서 설치해주세요.</string>
 
 </resources>

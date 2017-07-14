@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.CookieManager;
-import android.widget.Toast;
 
 import com.sj.sj.clipboardshare.R;
 import com.sj.sj.clipboardshare.WebViewActivity;
@@ -118,7 +118,11 @@ public class TwitterAccountManager implements AccountManager {
         e.remove(PREF_KEY_TWITTER_LOGIN);
         e.apply();
 
-        CookieManager.getInstance().removeAllCookies(null); // 쿠키 삭제(트위터 로그인 정보 삭제)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            CookieManager.getInstance().removeAllCookies(null); // 쿠키 삭제(트위터 로그인 정보 삭제)
+        } else {
+            CookieManager.getInstance().removeAllCookie();
+        }
 
         userInfo = null;
     }
@@ -193,7 +197,7 @@ public class TwitterAccountManager implements AccountManager {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Toast.makeText(context, "트위터에 공유하였습니다.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "트위터에 공유하였습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -5,6 +5,8 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -29,6 +31,8 @@ import com.sj.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private GoogleAccountManager googleAccountManager;
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     ConnectivityManager manager;
     private NetworkInfo mobile;
     private NetworkInfo wifi;
+
+    boolean isGooglePlusSetup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.network_login_check), Toast.LENGTH_LONG).show();
         }
 
+        isGooglePlusSetup = false;
+        PackageManager pm = this.getPackageManager();
+        List<ApplicationInfo> packs = pm.getInstalledApplications(PackageManager.MATCH_UNINSTALLED_PACKAGES);
+        for(ApplicationInfo app : packs) {
+            if(app.packageName.equals(getString(R.string.package_name_google_plus))) {
+                isGooglePlusSetup = true;
+                break;
+            }
+        }
+
         findViewById(R.id.button_start).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 if(clipboardAdapter.isEmpty()) {
@@ -99,6 +115,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!isTwitterLoggedIn && !isGoogleLoggedIn) {
                     shortToast(getString(R.string.not_logged_in));
+                    return;
+                }
+
+                if(isGoogleLoggedIn && !isGooglePlusSetup) {
+                    shortToast(isGoogleLoggedIn + "");
+                    shortToast(isGooglePlusSetup + "");
+                    shortToast(getString(R.string.app_not_installed_google_plus));
                     return;
                 }
 
