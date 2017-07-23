@@ -40,6 +40,7 @@
         앱 활성화 후 원하는 텍스트를 복사하면 아래의 화면에 추가됩니다.\n
         모든 텍스트를 복사한 후에 공유시작 버튼을 누르면 복사된 메시지가 로그인된 계정을 통해 공유됩니다.\n
         로그인은 오른쪽 상단의 메뉴 버튼의 계정 관리에서 할 수 있습니다.\n
+        앱 선택 버튼을 눌러 공유할 앱을 선택해주세요.\n
         공유하기 전에 네트워크에 연결되어 있는지 확인해주세요.\n
         복사된 텍스트는 짧게 눌러 전체 내용을 볼 수 있으며, 길게 눌러 삭제할 수 있습니다.\n
         사용 후에는 스위치를 눌러서 앱을 비활성화 해주세요.
@@ -59,5 +60,17 @@
     <string name="package_name_twitter">com.twitter.android</string>
     <string name="package_name_google_plus">com.google.android.apps.plus</string>
     <string name="app_not_installed_google_plus">구글 플러스 앱이 필요합니다. 구글 플레이 스토어에서 설치해주세요.</string>
+    <string name="hello">안녕하세요!</string>
+    <string name="version">버전</string>
+    <string name="twitter">트위터</string>
+    <string name="google_plus">구글 플러스</string>
+    <string name="please_select_app">\'앱 선택\' 버튼에서 공유할 앱을 선택해주세요.</string>
+    <string name="select_app">앱 선택</string>
+    <string name="apps_to_share_on">공유할 앱 선택</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="set">설정되었습니다.</string>
+    <string name="please_login_twitter">트위터에 로그인해주세요.</string>
+    <string name="toggle_switch">스위치</string>
 
 </resources>

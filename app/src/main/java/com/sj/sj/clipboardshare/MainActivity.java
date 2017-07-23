@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -48,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
     private ClipboardAdapter clipboardAdapter;
 
     private SwitchManager switchManager;
+    private SelectManager selectManager;
 
     ConnectivityManager manager;
     private NetworkInfo mobile;
     private NetworkInfo wifi;
 
     boolean isGooglePlusSetup;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         switchManager = SwitchManager.getInstance(this);
+        selectManager = SelectManager.getInstance(this);
 
         manager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
@@ -113,15 +118,18 @@ public class MainActivity extends AppCompatActivity {
                 final boolean isTwitterLoggedIn = twitterAccountManager.isLoggedIn();
                 final boolean isGoogleLoggedIn = googleAccountManager.isLoggedIn();
 
-                if(!isTwitterLoggedIn && !isGoogleLoggedIn) {
-                    shortToast(getString(R.string.not_logged_in));
+                if(isGoogleLoggedIn && !isGooglePlusSetup) {
+                    shortToast(getString(R.string.app_not_installed_google_plus));
                     return;
                 }
 
-                if(isGoogleLoggedIn && !isGooglePlusSetup) {
-                    shortToast(isGoogleLoggedIn + "");
-                    shortToast(isGooglePlusSetup + "");
-                    shortToast(getString(R.string.app_not_installed_google_plus));
+                if(!isTwitterLoggedIn && selectManager.getTwitter()) {
+                    shortToast(getString(R.string.please_login_twitter));
+                    return;
+                }
+
+                if(!selectManager.getTwitter() && !selectManager.getGoogle()) {
+                    shortToast(getString(R.string.please_select_app));
                     return;
                 }
 
@@ -171,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -178,6 +187,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.menu_select_app:
+                new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.apps_to_share_on))
+                        .setMultiChoiceItems(new String[]{getString(R.string.twitter), getString(R.string.google_plus)}, new boolean[]{selectManager.getTwitter(), selectManager.getGoogle()}, new DialogInterface.OnMultiChoiceClickListener() {
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                switch (which) {
+                                    case 0:
+                                        selectManager.setTwitter(isChecked);
+                                        break;
+                                    case 1:
+                                        selectManager.setGoogle(isChecked);
+                                        break;
+                                }
+                            }
+                        })
+                        .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                shortToast(getString(R.string.set));
+                            }
+                        }).show();
+
+                break;
+
             case R.id.menu_login_twitter_google:
                 String twitterSign;
                 if(twitterAccountManager.isLoggedIn()) {

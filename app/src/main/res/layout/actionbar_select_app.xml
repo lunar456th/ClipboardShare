@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonForActionBar"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:switchMinWidth="45dp"
+        android:padding="6dp"
+        android:text="@string/select_app"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/object_background"/>
+
+</RelativeLayout>

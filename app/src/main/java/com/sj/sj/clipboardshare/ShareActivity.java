@@ -17,6 +17,7 @@ public class ShareActivity extends AppCompatActivity {
     TwitterAccountManager twitterAccountManager;
     GoogleAccountManager googleAccountManager;
     ClipboardAdapter clipboardAdapter;
+    SelectManager selectManager;
 
     TextView twitterProgress;
     TextView googlePlusProgress;
@@ -37,19 +38,22 @@ public class ShareActivity extends AppCompatActivity {
         twitterAccountManager = TwitterAccountManager.getInstance(this);
         googleAccountManager = GoogleAccountManager.getInstance(this);
         clipboardAdapter = ClipboardAdapter.getInstance(this);
+        selectManager = SelectManager.getInstance(this);
 
         count = 0;
         size = clipboardAdapter.getCount();
 
-        for(int i = 0; i < size; i++) {
-            String status = clipboardAdapter.getItem(i).getString();
-            twitterAccountManager.share(status);
-            twitterProgress.setText(i + 1 + "/" + size);
+        if(selectManager.getTwitter()) {
+            for (int i = 0; i < size; i++) {
+                String status = clipboardAdapter.getItem(i).getString();
+                twitterAccountManager.share(status);
+                twitterProgress.setText(i + 1 + "/" + size);
+            }
+            Toast.makeText(this, getString(R.string.shared_twitter), Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, getString(R.string.shared_twitter), Toast.LENGTH_SHORT).show();
 
         int per_one = 3;
-        if(googleAccountManager.isLoggedIn()) {
+        if(selectManager.getGoogle()) {
             for (int i = 0; i < (size < per_one ? size : per_one); i++) {
                 String status = clipboardAdapter.getItem(count++).getString();
                 startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);

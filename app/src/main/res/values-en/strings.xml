@@ -40,6 +40,7 @@
         After activating the app, copy the desired text and it will be added to the screen below.\n
         After copying all the text, click the Start sharing button and the copied message will be shared through the logged in account.\n
         Sign-in can be done from the Manage Accounts menu button in the top right.\n
+        Please press "Select apps" button and select the apps to share on.
         The device must be connected to the network before sharing.\n
         You can view the entire contents by pressing briefly on the copied text, or you can delete it by pressing and holding.\n
         Please disable the app by pressing the switch after use.
@@ -59,5 +60,17 @@
     <string name="package_name_twitter">com.twitter.android</string>
     <string name="package_name_google_plus">com.google.android.apps.plus</string>
     <string name="app_not_installed_google_plus">You need a Google Plus application. Please install from the Google Play Store.</string>
+    <string name="hello">Hi!</string>
+    <string name="version">Version</string>
+    <string name="twitter">Twitter</string>
+    <string name="google_plus">Google+</string>
+    <string name="please_select_app">Select the apps to share on from the \'choose apps\' button.</string>
+    <string name="select_app">Select apps</string>
+    <string name="apps_to_share_on">Select apps to share on</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="set">Configured.</string>
+    <string name="please_login_twitter">Sign in to Twitter.</string>
+    <string name="toggle_switch">Switch</string>
 
 </resources>

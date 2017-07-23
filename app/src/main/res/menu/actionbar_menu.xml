@@ -5,9 +5,18 @@
     tools:context="com.sj.sj.clipboardshare.MainActivity">
 
     <item
+        android:id="@+id/menu_select_app"
+        android:actionLayout="@layout/actionbar_select_app"
+        android:title="@string/select_app"
+        app:showAsAction="always"
+        android:actionViewClass="android.widget.Button"
+        android:visible="true"
+        android:theme="@style/MyButton"/>
+
+    <item
         android:id="@+id/menu_activate"
         android:actionLayout="@layout/actionbar_switch"
-        android:title=""
+        android:title="@string/toggle_switch"
         app:showAsAction="always"
         android:actionViewClass="android.widget.Switch"
         android:visible="true"

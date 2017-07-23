@@ -2,9 +2,11 @@ package com.sj.sj.clipboardshare;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class AboutActivity extends PreferenceActivity {
 
@@ -16,6 +18,7 @@ public class AboutActivity extends PreferenceActivity {
         Preference github = findPreference("github");
         Preference playstore = findPreference("playstore");
         Preference naver = findPreference("naver");
+        Preference version = findPreference("version");
 
         github.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
@@ -43,6 +46,21 @@ public class AboutActivity extends PreferenceActivity {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(uri);
                 startActivity(Intent.createChooser(intent, "Send E-mail"));
+                return true;
+            }
+        });
+
+        version.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            public boolean onPreferenceClick(Preference preference) {
+                final Toast toast = Toast.makeText(getBaseContext(), getString(R.string.hello), Toast.LENGTH_SHORT);
+                toast.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 1000);
                 return true;
             }
         });

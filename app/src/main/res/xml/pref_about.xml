@@ -29,4 +29,10 @@
             android:data="mailto:lunar456th@naver.com" />
     </Preference>
 
+    <Preference
+        android:title="@string/version"
+        android:summary="1.1.5"
+        android:key="version">
+    </Preference>
+
 </PreferenceScreen>

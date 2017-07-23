@@ -1,5 +1,6 @@
 package com.sj.sj.clipboardshare.SNSAccountManager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.plus.PlusShare;
 
-public class GoogleAccountManager implements AccountManager {
+public class GoogleAccountManager extends Activity implements AccountManager {
 
     private static GoogleAccountManager instance;
     private Context context;
