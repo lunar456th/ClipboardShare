@@ -131,6 +131,10 @@ public class TwitterAccountManager implements AccountManager {
         new updateTwitterStatus().execute(status);
     }
 
+    public void retweet(String statusId) {
+        new retweetStatus().execute(statusId);
+    }
+
     private void saveTwitterInfo(AccessToken accessToken) {
         long userId = accessToken.getUserId();
 
@@ -161,6 +165,42 @@ public class TwitterAccountManager implements AccountManager {
 
         } catch (TwitterException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class retweetStatus extends AsyncTask<String, String, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            Long statusId = Long.parseLong(params[0]);
+            try {
+                Configuration configuration = new ConfigurationBuilder()
+                        .setOAuthConsumerKey(consumerKey)
+                        .setOAuthConsumerSecret(consumerSecret)
+                        .build();
+
+                String access_token = sharedPreferences.getString(PREF_KEY_OAUTH_TOKEN, "");
+                String access_token_secret = sharedPreferences.getString(PREF_KEY_OAUTH_SECRET, "");
+
+                AccessToken accessToken = new AccessToken(access_token, access_token_secret);
+                Twitter twitter = new TwitterFactory(configuration).getInstance(accessToken);
+
+                twitter.retweetStatus(statusId);
+
+            } catch (TwitterException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
         }
     }
 
@@ -197,10 +237,7 @@ public class TwitterAccountManager implements AccountManager {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-//            Toast.makeText(context, "트위터에 공유하였습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 
 }
-
-// Toast.makeText(MainActivity.this, "이미 로그인되어있습니다.", Toast.LENGTH_SHORT).show();

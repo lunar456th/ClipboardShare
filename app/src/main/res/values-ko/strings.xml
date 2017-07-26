@@ -72,5 +72,6 @@
     <string name="set">설정되었습니다.</string>
     <string name="please_login_twitter">트위터에 로그인해주세요.</string>
     <string name="toggle_switch">스위치</string>
+    <string name="excluded_from_sharing">140자를 초과하는 메시지는 공유에서 제외되었습니다.</string>
 
 </resources>

@@ -10,9 +10,14 @@ import com.sj.sj.clipboardshare.ClipboardManager.ClipboardAdapter;
 import com.sj.sj.clipboardshare.SNSAccountManager.GoogleAccountManager;
 import com.sj.sj.clipboardshare.SNSAccountManager.TwitterAccountManager;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ShareActivity extends AppCompatActivity {
 
     private static final int CODE_GOOGLE_SHARE_DIALOG = 4444;
+    private static final int TWITTER_LENGTH_LIMIT = 140;
 
     TwitterAccountManager twitterAccountManager;
     GoogleAccountManager googleAccountManager;
@@ -24,7 +29,10 @@ public class ShareActivity extends AppCompatActivity {
 
     private int count;
     private int numOfShared = 0;
-    private int size;
+    private int twitterSize;
+    private int googlePlusSize;
+
+    ArrayList<String> statusList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +49,51 @@ public class ShareActivity extends AppCompatActivity {
         selectManager = SelectManager.getInstance(this);
 
         count = 0;
-        size = clipboardAdapter.getCount();
+
+        twitterSize = clipboardAdapter.getCount();
+
+        statusList = new ArrayList<>();
+        for(int i = 0; i < clipboardAdapter.getCount(); i++) {
+            String status = clipboardAdapter.getItem(i).getString();
+            if(status.contains("리트윗") || status.contains("RETWEET") || status.contains("Retweet") || status.contains("retweet") || status.contains("ReTweet") || status.contains("reTweet")) {
+                continue;
+            } else {
+                statusList.add(status);
+            }
+        }
+
+        googlePlusSize = statusList.size();
 
         if(selectManager.getTwitter()) {
-            for (int i = 0; i < size; i++) {
+            boolean isLengthLimit = false;
+            for (int i = 0; i < twitterSize; i++) {
                 String status = clipboardAdapter.getItem(i).getString();
-                twitterAccountManager.share(status);
-                twitterProgress.setText(i + 1 + "/" + size);
+
+                if(status.contains("리트윗") || status.contains("RETWEET") || status.contains("Retweet") || status.contains("retweet") || status.contains("ReTweet") || status.contains("reTweet")) {
+                    twitterAccountManager.retweet(getStatusId(getUrl(status)));
+                }
+                else {
+                    if(status.length() <= TWITTER_LENGTH_LIMIT) {
+                        twitterAccountManager.share(status);
+                    } else {
+                        isLengthLimit = true;
+                    }
+                }
+
+                twitterProgress.setText(i + 1 + "/" + twitterSize);
+
             }
-            Toast.makeText(this, getString(R.string.shared_twitter), Toast.LENGTH_SHORT).show();
+            if(isLengthLimit) {
+                Toast.makeText(this, getString(R.string.shared_twitter) + " " + getString(R.string.excluded_from_sharing), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, getString(R.string.shared_twitter), Toast.LENGTH_SHORT).show();
+            }
         }
 
         int per_one = 3;
         if(selectManager.getGoogle()) {
-            for (int i = 0; i < (size < per_one ? size : per_one); i++) {
-                String status = clipboardAdapter.getItem(count++).getString();
+            for (int i = 0; i < (googlePlusSize < per_one ? googlePlusSize : per_one); i++) {
+                String status = statusList.get(count++); //clipboardAdapter.getItem(count++).getString();
                 startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);
             }
         } else {
@@ -69,14 +107,14 @@ public class ShareActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case CODE_GOOGLE_SHARE_DIALOG:
-                if (count == size) {
+                if (count == googlePlusSize) {
                     Intent intent = getIntent();
                     setResult(RESULT_OK, intent);
                     finish();
                 }
                 if (resultCode == RESULT_OK) {
-                    googlePlusProgress.setText(++numOfShared + "/" + size);
-                    if(count < size) {
+                    googlePlusProgress.setText(++numOfShared + "/" + googlePlusSize);
+                    if(count < googlePlusSize) {
                         String status = clipboardAdapter.getItem(count++).getString();
                         startActivityForResult(googleAccountManager.getSharePostIntent(status), CODE_GOOGLE_SHARE_DIALOG);
                     }
@@ -89,5 +127,22 @@ public class ShareActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    public static String getUrl(String str){
+        StringBuffer sb = new StringBuffer();
+        String regex ="[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
+
+        Pattern p = Pattern.compile(regex);
+        Matcher m=p.matcher(str);
+
+        if(m.find()){
+            sb.append(m.group(0));
+        }
+        return m.group(0);
+    }
+
+    public static String getStatusId(String url) {
+        return url.substring(url.lastIndexOf('/') + 1);
     }
 }

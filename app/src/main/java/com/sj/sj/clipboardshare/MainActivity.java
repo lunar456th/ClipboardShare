@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
             case CODE_PROCESS_INTENT:
                 if(resultCode == RESULT_OK) {
-                    shortToast(getString(R.string.shared_all));
+                    //shortToast(getString(R.string.shared_all));
                 }
                 break;
 

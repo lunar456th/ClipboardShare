@@ -72,5 +72,6 @@
     <string name="set">Configured.</string>
     <string name="please_login_twitter">Sign in to Twitter.</string>
     <string name="toggle_switch">Switch</string>
+    <string name="excluded_from_sharing">Messages longer than 140 characters were excluded from sharing.</string>
 
 </resources>
