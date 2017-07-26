@@ -3,6 +3,10 @@ package com.sj.sj.clipboardshare.SNSAccountManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.TextUtils;
@@ -11,6 +15,11 @@ import android.webkit.CookieManager;
 
 import com.sj.sj.clipboardshare.R;
 import com.sj.sj.clipboardshare.WebViewActivity;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -26,11 +35,13 @@ import static android.content.ContentValues.TAG;
 
 public class TwitterAccountManager implements AccountManager {
 
-    private static final String PREF_NAME = "twitter_prefname";
+    private static final String PREF_NAME = "twitter_pref_name";
     private static final String PREF_KEY_OAUTH_TOKEN = "twitter_oauth_token";
     private static final String PREF_KEY_OAUTH_SECRET = "twitter_oauth_secret";
-    private static final String PREF_KEY_TWITTER_LOGIN = "twitter_isloggedin";
-    private static final String PREF_USER_NAME = "twitter_username";
+    private static final String PREF_KEY_TWITTER_LOGIN = "twitter_is_logged_in";
+    private static final String PREF_USER_NAME = "twitter_user_name";
+    private static final String PREF_USER_SCREEN_NAME = "twitter_user_screen_name";
+    private static final String PREF_USER_PROFILE_IMAGE_URL = "twitter_profile_image_url";
 
     private Context context;
     private static TwitterAccountManager instance;
@@ -57,21 +68,32 @@ public class TwitterAccountManager implements AccountManager {
 
     }
 
-
     public String getUserName() {
         return sharedPreferences.getString(PREF_USER_NAME, "");
+    }
+
+    public String getUserScreenName() {
+        return sharedPreferences.getString(PREF_USER_SCREEN_NAME, "");
+    }
+
+    public Drawable getProfileImage() throws IOException {
+        String string = sharedPreferences.getString(PREF_USER_PROFILE_IMAGE_URL, "");
+        URL url = new URL(string);
+        URLConnection conn = url.openConnection();
+        conn.connect();
+        BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+        Bitmap bitmap = BitmapFactory.decodeStream(bis);
+        bis.close();
+        return new BitmapDrawable(bitmap); // return Drawable
     }
 
     private static String consumerKey;
     private static String consumerSecret;
     private static String callbackUrl;
-
     private static String oAuthVerifier;
-
     private static Twitter twitter;
+    private static User user;
     private static RequestToken requestToken;
-
-    private static User userInfo;
 
     private boolean isOAuthConfigured() {
         if(TextUtils.isEmpty(consumerKey) || TextUtils.isEmpty(consumerSecret)) {
@@ -84,24 +106,24 @@ public class TwitterAccountManager implements AccountManager {
 
     @Override
     public Intent getLoginIntent() {
-        if(!isLoggedIn()) {
-            final Configuration configuration = new ConfigurationBuilder()
-                    .setOAuthConsumerKey(consumerKey)
-                    .setOAuthConsumerSecret(consumerSecret)
-                    .build();
+        //if(!isLoggedIn()) {
+        final Configuration configuration = new ConfigurationBuilder()
+                .setOAuthConsumerKey(consumerKey)
+                .setOAuthConsumerSecret(consumerSecret)
+                .build();
 
-            twitter = new TwitterFactory(configuration).getInstance();
+        twitter = new TwitterFactory(configuration).getInstance();
 
-            try {
-                requestToken = twitter.getOAuthRequestToken(callbackUrl);
-            } catch (TwitterException e) {
-                e.printStackTrace();
-            }
-            Intent intent = new Intent(context, WebViewActivity.class);
-            intent.putExtra(WebViewActivity.EXTRA_URL, requestToken.getAuthenticationURL());
-            return intent;
+        try {
+            requestToken = twitter.getOAuthRequestToken(callbackUrl);
+        } catch (TwitterException e) {
+            e.printStackTrace();
         }
-        return null;
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra(WebViewActivity.EXTRA_URL, requestToken.getAuthenticationURL());
+        return intent;
+        //}
+        //return null;
     }
 
     @Override
@@ -119,31 +141,39 @@ public class TwitterAccountManager implements AccountManager {
         e.apply();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            CookieManager.getInstance().removeAllCookies(null); // 쿠키 삭제(트위터 로그인 정보 삭제)
+            CookieManager.getInstance().removeAllCookies(null); // remove cookies (remaining in webview)
         } else {
             CookieManager.getInstance().removeAllCookie();
         }
 
-        userInfo = null;
+        user = null;
     }
 
     public void share(String status) {
         new updateTwitterStatus().execute(status);
     }
 
+    public void retweet(String statusId) {
+        new retweetStatus().execute(statusId);
+    }
+
     private void saveTwitterInfo(AccessToken accessToken) {
         long userId = accessToken.getUserId();
 
         try {
-            userInfo = twitter.showUser(userId);
-            String username = userInfo.getName();
+            user = twitter.showUser(userId);
+            String userName = user.getName();
+            String userScreenName = user.getScreenName();
+            String imageUrl = user.getProfileImageURL();
 
             SharedPreferences.Editor e = sharedPreferences.edit();
             e.putString(PREF_KEY_OAUTH_TOKEN, accessToken.getToken());
             e.putString(PREF_KEY_OAUTH_SECRET, accessToken.getTokenSecret());
             e.putBoolean(PREF_KEY_TWITTER_LOGIN, true);
-            e.putString(PREF_USER_NAME, username);
-            e.apply(); // 원래 e.commit().
+            e.putString(PREF_USER_NAME, userName);
+            e.putString(PREF_USER_SCREEN_NAME, userScreenName);
+            e.putString(PREF_USER_PROFILE_IMAGE_URL, imageUrl);
+            e.apply(); // e.commit() originally.
         } catch (TwitterException e) {
             e.printStackTrace();
         }
@@ -155,12 +185,48 @@ public class TwitterAccountManager implements AccountManager {
             AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
 
             long userId = accessToken.getUserId();
-            userInfo = twitter.showUser(userId);
+            user = twitter.showUser(userId);
 
             saveTwitterInfo(accessToken);
 
         } catch (TwitterException e) {
             e.printStackTrace();
+        }
+    }
+
+    private class retweetStatus extends AsyncTask<String, String, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            Long statusId = Long.parseLong(params[0]);
+            try {
+                Configuration configuration = new ConfigurationBuilder()
+                        .setOAuthConsumerKey(consumerKey)
+                        .setOAuthConsumerSecret(consumerSecret)
+                        .build();
+
+                String access_token = sharedPreferences.getString(PREF_KEY_OAUTH_TOKEN, "");
+                String access_token_secret = sharedPreferences.getString(PREF_KEY_OAUTH_SECRET, "");
+
+                AccessToken accessToken = new AccessToken(access_token, access_token_secret);
+                Twitter twitter = new TwitterFactory(configuration).getInstance(accessToken);
+
+                twitter.retweetStatus(statusId);
+
+            } catch (TwitterException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
         }
     }
 
@@ -197,10 +263,7 @@ public class TwitterAccountManager implements AccountManager {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-//            Toast.makeText(context, "트위터에 공유하였습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 
 }
-
-// Toast.makeText(MainActivity.this, "이미 로그인되어있습니다.", Toast.LENGTH_SHORT).show();

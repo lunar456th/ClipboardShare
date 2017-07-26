@@ -5,7 +5,8 @@
     <string name="twitter_consumer_secret">U5MZojnzBZBgPkwBT3QMzRMi51GXi7vEDKK1pAFxURMGqEqJGH</string>
     <string name="twitter_callbackUrl">https://clipboardshare.android.app</string>
     <string name="twitter_oauth_verifier">oauth_verifier</string>
-    <string name="menu_account_manage">계정 관리</string>
+    <string name="menu_twitter_account_manage">트위터 계정</string>
+    <string name="menu_google_account_manage">구글 계정</string>
     <string name="menu_delete_all">모두 지우기</string>
     <string name="menu_about">About</string>
     <string name="main_copied">개의 텍스트가 복사되었습니다.</string>
@@ -72,5 +73,6 @@
     <string name="set">설정되었습니다.</string>
     <string name="please_login_twitter">트위터에 로그인해주세요.</string>
     <string name="toggle_switch">스위치</string>
+    <string name="excluded_from_sharing">140자를 초과하는 메시지는 공유에서 제외되었습니다.</string>
 
 </resources>

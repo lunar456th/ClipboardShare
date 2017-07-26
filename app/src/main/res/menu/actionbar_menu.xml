@@ -26,8 +26,13 @@
         android:id="@+id/menu_group">
 
         <item
-            android:id="@+id/menu_login_twitter_google"
-            android:title="@string/menu_account_manage"
+            android:id="@+id/menu_account_twitter"
+            android:title="@string/menu_twitter_account_manage"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/menu_account_google"
+            android:title="@string/menu_google_account_manage"
             app:showAsAction="never" />
 
         <item

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="@string/twitter_login"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:background="#ff7a00"
+            android:layout_width="match_parent"
+            android:layout_height="53dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/no_account"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/account_list"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/add_account"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_gravity="start"
+            android:background="#00000000"
+            android:onClick="onClickAddAccount"
+            android:padding="16dp"
+            android:text="add account"
+            android:textColor="#ff7a00"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/del_account"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_gravity="start"
+            android:background="#00000000"
+            android:onClick="onClickDelAccount"
+            android:padding="16dp"
+            android:text="del account"
+            android:textColor="#ff7a00"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_gravity="end"
+            android:background="#00000000"
+            android:onClick="onClickOk"
+            android:padding="16dp"
+            android:text="@string/ok"
+            android:textColor="#ff7a00"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

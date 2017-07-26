@@ -31,7 +31,7 @@
 
     <Preference
         android:title="@string/version"
-        android:summary="1.1.5"
+        android:summary="1.1.7"
         android:key="version">
     </Preference>
 
