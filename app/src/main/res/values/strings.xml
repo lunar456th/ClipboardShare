@@ -67,7 +67,7 @@
     <string name="google_plus">Google+</string>
     <string name="please_select_app">Select the apps to share on from the \'choose apps\' button.</string>
     <string name="select_app">Select apps</string>
-    <string name="apps_to_share_on">Select apps to share on</string>
+    <string name="app_to_share_on">Select apps to share on</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="set">Configured.</string>
@@ -78,5 +78,8 @@
     <string name="long_click_to_remove">Long press to delete</string>
     <string name="add_account">Add account</string>
     <string name="del_account_all">Delete all</string>
+    <string name="select_sharing_account">Select accounts to share with</string>
+    <string name="menu_select_account">Accounts On/Off</string>
+    <string name="select_twitter_account">Please select accounts at \'Accounts On/Off\'</string>
 
 </resources>

@@ -36,6 +36,10 @@
             app:showAsAction="never" />
 
         <item
+            android:id="@+id/menu_select_account"
+            android:title="@string/menu_select_account" />
+
+        <item
             android:id="@+id/menu_delete_all"
             android:title="@string/menu_delete_all"
             app:showAsAction="never" />

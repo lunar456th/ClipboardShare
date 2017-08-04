@@ -29,7 +29,6 @@ public class ShareActivity extends AppCompatActivity {
 
     private int count;
     private int numOfShared = 0;
-    private int twitterSize;
     private int googlePlusSize;
 
     ArrayList<String> statusList;
@@ -40,9 +39,11 @@ public class ShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
 
+        // init layout
         twitterProgress = (TextView)findViewById(R.id.sharing_twitter);
         googlePlusProgress = (TextView)findViewById(R.id.sharing_google_plus);
 
+        // get instances
         twitterAccountManager = TwitterAccountManager.getInstance(this);
         googleAccountManager = GoogleAccountManager.getInstance(this);
         clipboardAdapter = ClipboardAdapter.getInstance(this);
@@ -50,42 +51,35 @@ public class ShareActivity extends AppCompatActivity {
 
         count = 0;
 
-        twitterSize = clipboardAdapter.getCount();
+        int twitterSize = clipboardAdapter.getCount();
 
         statusList = new ArrayList<>();
         for(int i = 0; i < clipboardAdapter.getCount(); i++) {
             String status = clipboardAdapter.getItem(i).getString();
-            if(status.contains("리트윗") || status.contains("RETWEET") || status.contains("Retweet") || status.contains("retweet") || status.contains("ReTweet") || status.contains("reTweet")) {
-                continue;
-            } else {
+            if(!status.contains("리트윗") && !status.contains("RETWEET") && !status.contains("Retweet") && !status.contains("retweet") && !status.contains("ReTweet") && !status.contains("reTweet")) {
                 statusList.add(status);
             }
         }
 
-        googlePlusSize = statusList.size();
-
-        if(selectManager.getTwitter()) {
-            boolean isLengthLimit = false;
-            for (int i = 0; i < twitterSize; i++) {
-                String status = clipboardAdapter.getItem(i).getString();
-
-                if(status.contains("리트윗") || status.contains("RETWEET") || status.contains("Retweet") || status.contains("retweet") || status.contains("ReTweet") || status.contains("reTweet")) {
-                    for(int j = 0; j < twitterAccountManager.size(); j++) {
-                        twitterAccountManager.retweet(j, getStatusId(getUrl(status)));
-                    }
-                }
-                else {
-                    if(status.length() <= TWITTER_LENGTH_LIMIT) {
-                        for(int j = 0; j < twitterAccountManager.size(); j++) {
-                            twitterAccountManager.share(j, status);
+        // share on Twitter
+        if(selectManager.getTwitter()) { // if twitter is selected to share
+            boolean isLengthLimit = false; // use for checking excess
+            for(int j = 0; j < twitterAccountManager.size(); j++) {
+                if(twitterAccountManager.getUserActivated(j)) {
+                    for (int i = 0; i < twitterSize; i++) { // the number of messages
+                        String status = clipboardAdapter.getItem(i).getString();
+                        if (status.contains("리트윗") || status.contains("RETWEET") || status.contains("Retweet") || status.contains("retweet") || status.contains("ReTweet") || status.contains("reTweet")) {
+                            twitterAccountManager.retweet(j, getStatusId(getUrl(status)));
+                        } else {
+                            if (status.length() <= TWITTER_LENGTH_LIMIT) {
+                                twitterAccountManager.share(j, status);
+                            } else {
+                                isLengthLimit = true;
+                            }
                         }
-                    } else {
-                        isLengthLimit = true;
+                        twitterProgress.setText(i + 1 + "/" + twitterSize);
                     }
                 }
-
-                twitterProgress.setText(i + 1 + "/" + twitterSize);
-
             }
             if(isLengthLimit) {
                 Toast.makeText(this, getString(R.string.shared_twitter) + " " + getString(R.string.excluded_from_sharing), Toast.LENGTH_SHORT).show();
@@ -94,7 +88,9 @@ public class ShareActivity extends AppCompatActivity {
             }
         }
 
+        // share on Google+
         int per_one = 3;
+        googlePlusSize = statusList.size();
         if(selectManager.getGoogle()) {
             for (int i = 0; i < (googlePlusSize < per_one ? googlePlusSize : per_one); i++) {
                 String status = statusList.get(count++);

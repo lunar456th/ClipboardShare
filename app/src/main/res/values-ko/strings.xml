@@ -67,7 +67,7 @@
     <string name="google_plus">구글 플러스</string>
     <string name="please_select_app">\'앱 선택\' 버튼에서 공유할 앱을 선택해주세요.</string>
     <string name="select_app">앱 선택</string>
-    <string name="apps_to_share_on">공유할 앱 선택</string>
+    <string name="app_to_share_on">공유할 앱 선택</string>
     <string name="ok">확인</string>
     <string name="cancel">취소</string>
     <string name="set">설정되었습니다.</string>
@@ -78,5 +78,8 @@
     <string name="long_click_to_remove">길게 눌러 삭제 가능</string>
     <string name="add_account">계정 추가</string>
     <string name="del_account_all">모두 삭제</string>
+    <string name="select_sharing_account">공유할 계정 선택</string>
+    <string name="menu_select_account">공유할 계정 선택</string>
+    <string name="select_twitter_account">\'공유할 계정 선택\'에서 계정을 선택해주세요.</string>
 
 </resources>

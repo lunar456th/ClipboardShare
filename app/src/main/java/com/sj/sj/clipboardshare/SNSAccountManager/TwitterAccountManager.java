@@ -35,9 +35,10 @@ public class TwitterAccountManager {
     private static final String PREF_KEY_OAUTH_TOKEN = "twitter_oauth_token";
     private static final String PREF_KEY_OAUTH_SECRET = "twitter_oauth_secret";
     private static final String PREF_KEY_TWITTER_LOGIN = "twitter_is_logged_in";
+    private static final String PREF_USER_PROFILE_IMAGE_URL = "twitter_profile_image_url";
     private static final String PREF_USER_NAME = "twitter_user_name";
     private static final String PREF_USER_SCREEN_NAME = "twitter_user_screen_name";
-    private static final String PREF_USER_PROFILE_IMAGE_URL = "twitter_profile_image_url";
+    private static final String PREF_USER_ACTIVATED = "twitter_activated";
 
     private static String consumerKey;
     private static String consumerSecret;
@@ -96,6 +97,26 @@ public class TwitterAccountManager {
         return mSharedPref.getString(PREF_USER_SCREEN_NAME, "");
     }
 
+    public boolean getUserActivated(int position) {
+        SharedPreferences mSharedPref = context.getSharedPreferences(PREF_NAME + position, 0);
+        return mSharedPref.getBoolean(PREF_USER_ACTIVATED, true);
+    }
+
+    public boolean isUserActivated() {
+        boolean exist = false;
+        SharedPreferences mSharedPref;
+        for(int i = 0; i < size(); i++) {
+            exist |= context.getSharedPreferences(PREF_NAME + i, 0).getBoolean(PREF_USER_ACTIVATED, true);
+        }
+        return exist;
+    }
+
+    public void setUserActivated(int position, boolean activate) {
+        SharedPreferences mSharedPref = context.getSharedPreferences(PREF_NAME + position, 0);
+        SharedPreferences.Editor e = mSharedPref.edit();
+        e.putBoolean(PREF_USER_ACTIVATED, activate).apply();
+    }
+
     private boolean isOAuthConfigured() {
         if(TextUtils.isEmpty(consumerKey) || TextUtils.isEmpty(consumerSecret)) {
             // Log.e(TAG, "Twitter Consumer Key or Secret is not configured.");
@@ -123,34 +144,6 @@ public class TwitterAccountManager {
         return intent;
     }
 
-    public boolean isLoggedIn() {
-        return size() > 0;
-    }
-
-    public void logout(int position) {
-        SharedPreferences mSharedPref = context.getSharedPreferences(PREF_NAME + position, 0);
-        SharedPreferences.Editor e = mSharedPref.edit();
-        e.remove(PREF_KEY_OAUTH_TOKEN);
-        e.remove(PREF_KEY_OAUTH_SECRET);
-        e.remove(PREF_KEY_TWITTER_LOGIN);
-        e.apply();
-
-        mSharedPref = context.getSharedPreferences(PREF_NAME, 0);
-        int count = mSharedPref.getInt(PREF_COUNT, 0);
-        e = mSharedPref.edit();
-        e.putInt(PREF_COUNT, count - 1).apply();
-
-        fillUpSharedPreference(position);
-    }
-
-    public void share(int position, String status) {
-        new updateTwitterStatus(position).execute(status);
-    }
-
-    public void retweet(int position, String statusId) {
-        new retweetStatus(position).execute(statusId);
-    }
-
     private void saveTwitterInfo(AccessToken accessToken) {
         long userId = accessToken.getUserId();
 
@@ -167,9 +160,10 @@ public class TwitterAccountManager {
             e.putString(PREF_KEY_OAUTH_TOKEN, accessToken.getToken());
             e.putString(PREF_KEY_OAUTH_SECRET, accessToken.getTokenSecret());
             e.putBoolean(PREF_KEY_TWITTER_LOGIN, true);
+            e.putString(PREF_USER_PROFILE_IMAGE_URL, imageUrl);
             e.putString(PREF_USER_NAME, userName);
             e.putString(PREF_USER_SCREEN_NAME, userScreenName);
-            e.putString(PREF_USER_PROFILE_IMAGE_URL, imageUrl);
+            e.putBoolean(PREF_USER_ACTIVATED, false);
             e.apply(); // e.commit() originally.
 
             sharedPreferences = context.getSharedPreferences(PREF_NAME, 0);
@@ -191,6 +185,38 @@ public class TwitterAccountManager {
         } catch (TwitterException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isLoggedIn() {
+        return size() > 0;
+    }
+
+    public void logout(int position) {
+        SharedPreferences mSharedPref = context.getSharedPreferences(PREF_NAME + position, 0);
+        SharedPreferences.Editor e = mSharedPref.edit();
+        e.remove(PREF_KEY_OAUTH_TOKEN);
+        e.remove(PREF_KEY_OAUTH_SECRET);
+        e.remove(PREF_KEY_TWITTER_LOGIN);
+        e.remove(PREF_USER_PROFILE_IMAGE_URL);
+        e.remove(PREF_USER_NAME);
+        e.remove(PREF_USER_SCREEN_NAME);
+        e.remove(PREF_USER_ACTIVATED);
+        e.apply();
+
+        mSharedPref = context.getSharedPreferences(PREF_NAME, 0);
+        int count = mSharedPref.getInt(PREF_COUNT, 0);
+        e = mSharedPref.edit();
+        e.putInt(PREF_COUNT, count - 1).apply();
+
+        fillUpSharedPreference(position);
+    }
+
+    public void share(int position, String status) {
+        new updateTwitterStatus(position).execute(status);
+    }
+
+    public void retweet(int position, String statusId) {
+        new retweetStatus(position).execute(statusId);
     }
 
     private class retweetStatus extends AsyncTask<String, String, Void> {

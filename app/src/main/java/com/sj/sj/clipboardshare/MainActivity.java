@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                if(selectManager.getTwitter() && !twitterAccountManager.isUserActivated()) {
+                    Utils.toastShort(MainActivity.this, getString(R.string.select_twitter_account));
+                    return;
+                }
+
                 // if it has no problem //
                 AlertDialog.Builder alt_bld = new AlertDialog.Builder(MainActivity.this);
                 alt_bld.setMessage(clipboardAdapter.getCount() + getString(R.string.question_before_share))
@@ -200,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             // app selection button //
             case R.id.menu_select_app:
                 new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.apps_to_share_on))
+                        .setTitle(getString(R.string.app_to_share_on))
                         .setMultiChoiceItems(new String[]{getString(R.string.twitter), getString(R.string.google_plus)}, new boolean[]{selectManager.getTwitter(), selectManager.getGoogle()}, new DialogInterface.OnMultiChoiceClickListener() {
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                                 switch (which) {
@@ -268,10 +273,32 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
+            // select account //
+            case R.id.menu_select_account:
+                String displayName[] = new String[twitterAccountManager.size()];
+                boolean displayChecked[] = new boolean[twitterAccountManager.size()];
+                for(int i = 0; i < twitterAccountManager.size(); i++) {
+                    displayName[i] = twitterAccountManager.getUserName(i);
+                    displayChecked[i] = twitterAccountManager.getUserActivated(i);
+                }
+
+                new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.select_sharing_account))
+                        .setMultiChoiceItems(displayName, displayChecked, new DialogInterface.OnMultiChoiceClickListener() {
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                twitterAccountManager.setUserActivated(which, isChecked);
+                            }
+                        }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Utils.toastShort(MainActivity.this, getString(R.string.set));
+                    }
+                }).show();
+                break;
+
             // delete all //
             case R.id.menu_delete_all:
-                AlertDialog.Builder alt_bld = new AlertDialog.Builder(MainActivity.this);
-                alt_bld.setMessage(getString(R.string.question_before_remove_all))
+                new AlertDialog.Builder(this)
+                        .setMessage(getString(R.string.question_before_remove_all))
                         .setCancelable(true)
                         .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -284,10 +311,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
-                        });
-                AlertDialog alert = alt_bld.create();
-                alert.show();
-
+                        }).show();
                 break;
 
             // about //
@@ -352,7 +376,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = googleAccountManager.getLoginIntent();
         startActivityForResult(intent, CODE_GOOGLE_LOGIN_IN);
     }
-
 
     @Override
     protected void onDestroy() {
