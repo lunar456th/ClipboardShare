@@ -70,11 +70,15 @@ public class ShareActivity extends AppCompatActivity {
                 String status = clipboardAdapter.getItem(i).getString();
 
                 if(status.contains("리트윗") || status.contains("RETWEET") || status.contains("Retweet") || status.contains("retweet") || status.contains("ReTweet") || status.contains("reTweet")) {
-                    twitterAccountManager.retweet(getStatusId(getUrl(status)));
+                    for(int j = 0; j < twitterAccountManager.size(); j++) {
+                        twitterAccountManager.retweet(j, getStatusId(getUrl(status)));
+                    }
                 }
                 else {
                     if(status.length() <= TWITTER_LENGTH_LIMIT) {
-                        twitterAccountManager.share(status);
+                        for(int j = 0; j < twitterAccountManager.size(); j++) {
+                            twitterAccountManager.share(j, status);
+                        }
                     } else {
                         isLengthLimit = true;
                     }

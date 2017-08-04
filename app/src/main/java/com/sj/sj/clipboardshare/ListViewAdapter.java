@@ -9,44 +9,42 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
-    // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
+    // ArrayList to store the data added to Adapter
     private ArrayList<AccountObject> AccountObjectList = new ArrayList<>() ;
 
-    // ListViewAdapter의 생성자
+    // constructor for ListViewAdapter
     public ListViewAdapter() {
-
     }
 
-    // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
+    // returns the number of data used by the adapter. : required implementation
     @Override
     public int getCount() {
         return AccountObjectList.size() ;
     }
 
-    // position에 위치한 데이터를 화면에 출력하는데 사용될 View를 리턴. : 필수 구현
+    // return the View that will be used to display the data at the position on the screen. : required implementation
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
 
-        // "listview_item" Layout을 inflate하여 convertView 참조 획득.
+            // Inflate the "listview_item" layout to get a reference to convertView.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item_account, parent, false);
         }
 
-        // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView iconImageView = (ImageView)convertView.findViewById(R.id.imageView1) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.textView1) ;
-        TextView descTextView = (TextView) convertView.findViewById(R.id.textView2) ;
+        // obtain a reference to the widget from the View (Layout inflated) to be displayed on the screen.
+        ImageView iconImageView = (ImageView)convertView.findViewById(R.id.profile_image) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.name) ;
+        TextView descTextView = (TextView) convertView.findViewById(R.id.screen_name) ;
 
-        // Data Set(AccountObjectList)에서 position에 위치한 데이터 참조 획득
+        // obtain a data reference located at position in the Data Set(AccountObjectList)
         AccountObject AccountObject = AccountObjectList.get(position);
 
-        // 아이템 내 각 위젯에 데이터 반영
+        // reflect data on each widget in the item.
         iconImageView.setImageDrawable(AccountObject.getIcon());
         titleTextView.setText(AccountObject.getTitle());
         String temp = AccountObject.getDesc() + "";
@@ -55,19 +53,19 @@ public class ListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    // 지정한 위치(position)에 있는 데이터와 관계된 아이템(row)의 ID를 리턴. : 필수 구현
+    // return the ID of the item associated with the data at the specified position. : Required implementation
     @Override
     public long getItemId(int position) {
         return position ;
     }
 
-    // 지정한 위치(position)에 있는 데이터 리턴 : 필수 구현
+    // return the data at the specified position : required implementation
     @Override
     public AccountObject getItem(int position) {
         return AccountObjectList.get(position) ;
     }
 
-    // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
+    // function to add item data. able to customize.
     public void addItem(Drawable icon, String title, String desc) {
         AccountObject item = new AccountObject();
 
@@ -76,5 +74,10 @@ public class ListViewAdapter extends BaseAdapter {
         item.setDesc(desc);
 
         AccountObjectList.add(item);
+    }
+
+    // function to remove item data. able to customize.
+    public void removeItem(int position) {
+        AccountObjectList.remove(position);
     }
 }

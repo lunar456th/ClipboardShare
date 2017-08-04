@@ -74,5 +74,9 @@
     <string name="please_login_twitter">트위터에 로그인해주세요.</string>
     <string name="toggle_switch">스위치</string>
     <string name="excluded_from_sharing">140자를 초과하는 메시지는 공유에서 제외되었습니다.</string>
+    <string name="no_login_account">로그인된 계정이 없습니다.</string>
+    <string name="long_click_to_remove">길게 눌러 삭제 가능</string>
+    <string name="add_account">계정 추가</string>
+    <string name="del_account_all">모두 삭제</string>
 
 </resources>

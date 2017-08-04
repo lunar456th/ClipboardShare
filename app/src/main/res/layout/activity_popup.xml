@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#eeeeee"
     android:orientation="vertical"
     android:layout_width="300dp"
@@ -31,12 +32,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/no_account"/>
+            android:id="@+id/no_account"
+            android:textColor="#222222"
+            android:text="New Text"/>
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:id="@+id/account_list"
+            android:dividerHeight="4dp"
+            android:divider="#EEEEEE"
             android:gravity="center"/>
 
     </LinearLayout>
@@ -54,21 +59,23 @@
             android:background="#00000000"
             android:onClick="onClickAddAccount"
             android:padding="16dp"
-            android:text="add account"
+            android:text="@string/add_account"
             android:textColor="#ff7a00"
-            android:textSize="12sp" />
+            android:textSize="13sp"
+            tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/del_account"
+            android:id="@+id/del_account_all"
             android:layout_width="wrap_content"
             android:layout_height="53dp"
             android:layout_gravity="start"
             android:background="#00000000"
             android:onClick="onClickDelAccount"
             android:padding="16dp"
-            android:text="del account"
+            android:text="@string/del_account_all"
             android:textColor="#ff7a00"
-            android:textSize="12sp" />
+            android:textSize="13sp"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/ok"
@@ -80,7 +87,8 @@
             android:padding="16dp"
             android:text="@string/ok"
             android:textColor="#ff7a00"
-            android:textSize="12sp" />
+            android:textSize="13sp"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 

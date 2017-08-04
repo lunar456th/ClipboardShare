@@ -1,11 +1,14 @@
 package com.sj.sj.clipboardshare;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,32 +37,60 @@ public class PopupActivity extends Activity {
 
         setContentView(R.layout.activity_popup);
 
-        //UI 객체생성
-        ListView listView = (ListView)findViewById(R.id.account_list);
+        // create the UI object.
+        final ListView listView = (ListView)findViewById(R.id.account_list);
 
-        //데이터 가져오기
+        // import data
         twitterAccountManager = TwitterAccountManager.getInstance(this);
-        ListViewAdapter listViewAdapter = new ListViewAdapter();
-        TextView noAccount = (TextView)findViewById(R.id.no_account);
+        final ListViewAdapter listViewAdapter = new ListViewAdapter();
+        TextView description = (TextView)findViewById(R.id.no_account);
+
         if (twitterAccountManager.isLoggedIn()) {
-            findViewById(R.id.no_account).setVisibility(View.GONE);
+            description.setText(getResources().getString(R.string.long_click_to_remove));
             try {
-                listViewAdapter.addItem(twitterAccountManager.getProfileImage(), twitterAccountManager.getUserName(), "@" + twitterAccountManager.getUserScreenName());
+                for(int i=0;i<twitterAccountManager.size();i++)
+                listViewAdapter.addItem(twitterAccountManager.getProfileImage(i), twitterAccountManager.getUserName(i), "@" + twitterAccountManager.getUserScreenName(i));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            noAccount.setVisibility(View.VISIBLE);
-            noAccount.setText("로그인된 계정이 없습니다.");
+            description.setVisibility(View.VISIBLE);
+            description.setText(getResources().getString(R.string.no_login_account));
         }
         listView.setAdapter(listViewAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alt_bld = new AlertDialog.Builder(PopupActivity.this);
+                alt_bld.setMessage(getString(R.string.question_before_logout))
+                        .setCancelable(false)
+                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                twitterAccountManager.logout(position);
+                                listViewAdapter.removeItem(position);
+                                listViewAdapter.notifyDataSetChanged();
+                                listView.setAdapter(listViewAdapter);
+                                listView.invalidateViews();
+                                listView.refreshDrawableState();
+                                Utils.toastShort(PopupActivity.this, getString(R.string.logged_out));
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = alt_bld.create();
+                alert.show();
+
+                return true;
+            }
+        });
     }
     public void onClickOk(View v) {
-
         //Intent intent = new Intent();
         //intent.putExtra("result", "Close Popup");
         //setResult(RESULT_OK, intent);
-
         finish();
     }
 
@@ -70,7 +101,10 @@ public class PopupActivity extends Activity {
     }
 
     public void onClickDelAccount(View v) {
-        twitterAccountManager.logout();
+        for(int i = 0; i < twitterAccountManager.size(); i++) {
+            twitterAccountManager.logout(i);
+        }
+        Utils.toastShort(this, getResources().getString(R.string.removed_all));
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
@@ -78,13 +112,13 @@ public class PopupActivity extends Activity {
 
 //    @Override
 //    public boolean onTouchEvent(MotionEvent event) {
-//        //바깥레이어 클릭시 안닫히게
+//        // do not close when clicking outside layer.
 //        return event.getAction() != MotionEvent.ACTION_OUTSIDE;
 //    }
 
 //    @Override
 //    public void onBackPressed() {
-//        //안드로이드 백버튼 막기
+//        // disable the android back button.
 //    }
 
 //    private void getTwitterLoginIntent() {

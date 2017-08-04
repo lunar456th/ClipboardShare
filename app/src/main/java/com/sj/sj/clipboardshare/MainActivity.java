@@ -36,24 +36,21 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // declaration of local variables //
+    // declare local variables //
     private GoogleAccountManager googleAccountManager;
     private TwitterAccountManager twitterAccountManager;
     private SwitchManager switchManager;
     private SelectManager selectManager;
 
+    // declare request&result codes //
     private static final int CODE_TWITTER_LOGIN_IN = 1111;
     private static final int CODE_GOOGLE_LOGIN_IN = 2222;
     private static final int CODE_PROCESS_INTENT = 3333;
     private static final int RESULT_REQUEST_LOGIN = 1212;
     private static final int CODE_TWITTER_ACCOUNT = 4444;
 
-    private RecyclerView recyclerView;
     private ClipboardAdapter clipboardAdapter;
 
-    private ImageView imageBackground;
-
-    private ConnectivityManager manager;
     private NetworkInfo mobile;
     private NetworkInfo wifi;
 
@@ -68,14 +65,14 @@ public class MainActivity extends AppCompatActivity {
         twitterAccountManager = TwitterAccountManager.getInstance(this);
 
         // initiate recycler view //
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         clipboardAdapter = ClipboardAdapter.getInstance(this);
         recyclerView.setAdapter(clipboardAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-        imageBackground = (ImageView)findViewById(R.id.image_background);
+        ImageView imageBackground = (ImageView) findViewById(R.id.image_background);
         imageBackground.setAlpha((float)0.5);
 
         // Enable Actionbar
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         switchManager = SwitchManager.getInstance(this);
         selectManager = SelectManager.getInstance(this);
 
-        manager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         mobile = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
@@ -227,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
             // twitter login button //
             case R.id.menu_account_twitter:
                 Intent intent = new Intent(this, PopupActivity.class);
-                intent.putExtra("data", "Test Popup");
                 startActivityForResult(intent, CODE_TWITTER_ACCOUNT);
                 break;
 

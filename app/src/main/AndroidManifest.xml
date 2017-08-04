@@ -46,7 +46,7 @@
             android:name="PopupActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent" />
+            android:theme="@style/Theme.AppCompat" />
     <service android:name=".ClipboardManager.ClipboardService"/>
     </application>
 

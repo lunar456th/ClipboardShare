@@ -74,5 +74,9 @@
     <string name="please_login_twitter">Sign in to Twitter.</string>
     <string name="toggle_switch">Switch</string>
     <string name="excluded_from_sharing">Messages longer than 140 characters were excluded from sharing.</string>
+    <string name="no_login_account">No accounts signed in.</string>
+    <string name="long_click_to_remove">Long press to delete</string>
+    <string name="add_account">Add account</string>
+    <string name="del_account_all">Delete all</string>
 
 </resources>
